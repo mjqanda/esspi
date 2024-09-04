@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.esspi.dto.LoginRecordDTO;
-import com.example.esspi.dto.LoginRequest;
+import com.example.esspi.dto.LoginRequestDTO;
 import com.example.esspi.model.User;
 import com.example.esspi.service.LoginRecordService;
 import com.example.esspi.service.UserService;
@@ -28,7 +28,7 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@Valid @RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<String> login(@Valid @RequestBody LoginRequestDTO loginRequest) {
         try {
             User user = userService.findByUsername(loginRequest.getUsername());
 
