@@ -17,8 +17,10 @@ public interface LoginRecordRepository extends JpaRepository<LoginRecord, Long> 
     @Query(value = "BEGIN record_login(:userId); END;", nativeQuery = true)
     void recordLogin(Long userId);
 
-    @Query("SELECT new com.example.esspi.dto.LoginRecordDTO(l.id, l.userId, l.loginTime, u.username, u.password, u.createdDate) " +
-           "FROM LoginRecord l JOIN User u ON l.userId = u.id")
+    @Query("""
+            SELECT new com.example.esspi.dto.LoginRecordDTO(l.id,
+                l.userId, l.loginTime, u.username, u.password, u.createdDate)
+            FROM LoginRecord l JOIN User u ON l.userId = u.id """)
     List<LoginRecordDTO> getLoginRecordsWithUserDetails();
 
 }
