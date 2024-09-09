@@ -10,6 +10,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Rollback;
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
@@ -17,7 +19,7 @@ class UserServiceTest {
     @Mock
     private UserRepository userRepository;
 
-    @InjectMocks
+    @Autowired
     private UserService userService;
 
     @Test
@@ -37,6 +39,7 @@ class UserServiceTest {
     }
 
     @Test
+    @Rollback(true)
     void testCreateUser() {
         // Given
         String username = "newUser";
